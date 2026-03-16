@@ -9,7 +9,7 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
 
       - name: Set up Java
         uses: actions/setup-java@v3
@@ -17,8 +17,8 @@ jobs:
           distribution: temurin
           java-version: 11
 
-      - name: Install Gradle
-        run: sudo apt-get install gradle
+      - name: Setup Gradle
+        uses: gradle/gradle-build-action@v2
 
       - name: Build with Gradle
         run: gradle build
