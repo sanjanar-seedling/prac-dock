@@ -3,16 +3,10 @@ name: Java CI with Gradle
 on:
   push:
     branches: [ master ]
-  pull_request:
-    branches: [ master ]
 
 jobs:
   build-java:
-    runs-on: ${{ matrix.os }}
-
-    strategy:
-      matrix:
-        os: [ubuntu-latest, windows-latest, macos-latest]
+    runs-on: ubuntu-latest
 
     steps:
       - name: Checkout repository
@@ -28,7 +22,7 @@ jobs:
         run: |
           wget https://services.gradle.org/distributions/gradle-6.9-bin.zip
           unzip gradle-6.9-bin.zip
-          mv gradle-6.9 gradle
+          sudo mv gradle-6.9 /opt/gradle
 
       - name: Build Project
-        run: ./gradle/bin/gradle build
+        run: /opt/gradle/bin/gradle build
