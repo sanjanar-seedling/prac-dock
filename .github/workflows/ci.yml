@@ -15,10 +15,14 @@ jobs:
         uses: actions/setup-java@v3
         with:
           distribution: temurin
-          java-version: 17
+          java-version: 11
 
-      - name: Setup Gradle
-        uses: gradle/gradle-build-action@v2
+      - name: Install Gradle 6.9
+        run: |
+          wget https://services.gradle.org/distributions/gradle-6.9-bin.zip
+          unzip gradle-6.9-bin.zip
+          sudo mv gradle-6.9 /opt/gradle
+          sudo ln -s /opt/gradle/bin/gradle /usr/bin/gradle
 
       - name: Build with Gradle
         run: gradle build
